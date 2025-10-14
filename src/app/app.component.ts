@@ -16,19 +16,18 @@ interface Contato {
 import agenda from './agenda.json'
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [
-    CommonModule, 
-    RouterOutlet, 
-    ContainerComponent, 
-    CabecalhoComponent, 
-    SeparadorComponent,
-    ContatoComponent,
-    FormsModule
-  ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+    selector: 'app-root',
+    imports: [
+        CommonModule,
+        RouterOutlet,
+        ContainerComponent,
+        CabecalhoComponent,
+        SeparadorComponent,
+        ContatoComponent,
+        FormsModule
+    ],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css'
 })
 export class AppComponent {
   alfabeto: string = 'abcdefghijklmnopqrstuvwxyz'
