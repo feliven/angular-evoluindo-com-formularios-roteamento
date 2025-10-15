@@ -9,6 +9,8 @@ import {
 import { RouterLink } from '@angular/router';
 import { Container } from '../../componentes/container/container';
 import { Separador } from '../../componentes/separador/separador';
+import { ContatoService } from '../../servicos/contato-service';
+import { InterfaceContato } from '../../interfaces/interface-contato';
 
 @Component({
   selector: 'app-formulario-contato',
@@ -25,7 +27,7 @@ import { Separador } from '../../componentes/separador/separador';
 export class FormularioContato implements OnInit {
   formularioContato!: FormGroup;
 
-  constructor() {}
+  constructor(private contatoService: ContatoService) {}
 
   ngOnInit() {
     this.inicializarFormulario();
@@ -35,7 +37,7 @@ export class FormularioContato implements OnInit {
     this.formularioContato = new FormGroup({
       nome: new FormControl('', Validators.required),
       telefone: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('', Validators.email),
       aniversario: new FormControl('02/02/2020'),
       redes: new FormControl('twiter'),
       observacoes: new FormControl('hello world'),
@@ -45,6 +47,8 @@ export class FormularioContato implements OnInit {
   salvarContato() {
     if (this.formularioContato.valid) {
       console.log(this.formularioContato.value);
+      const novoContato: InterfaceContato = this.formularioContato.value;
+      this.contatoService.setContato(novoContato);
     } else {
       console.log('FORMULÁRIO INVÀLIDO!!!');
     }

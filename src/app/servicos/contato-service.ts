@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Contatos } from '../paginas/lista-contatos/lista-contatos';
+import { InterfaceContato } from '../interfaces/interface-contato';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ContatoService {
-  private contatos: Contatos[] = [
+  private contatos: InterfaceContato[] = [
     { id: 1, nome: 'Ana', telefone: '29 278869420' },
     { id: 2, nome: 'Antônio', telefone: '38 128451235' },
     { id: 53, nome: 'Ágata', telefone: '38 128451235' },
@@ -18,16 +18,21 @@ export class ContatoService {
   constructor() {
     // obtém contatos salvos no localStorage
     const contatosLSEmString: string | null = localStorage.getItem('contatos');
-    const contatosLS: Contatos[] = contatosLSEmString
+    const contatosLS: InterfaceContato[] = contatosLSEmString
       ? JSON.parse(contatosLSEmString)
-      : null;
+      : [];
     this.contatos = contatosLS || null;
 
     // salva contatos no localStorage
     localStorage.setItem('contatos', JSON.stringify(this.contatos));
   }
 
-  obterContatos() {
+  getContatos() {
     return this.contatos;
+  }
+
+  setContato(contato: InterfaceContato) {
+    this.contatos.push(contato);
+    localStorage.setItem('contatos', JSON.stringify(this.contatos));
   }
 }

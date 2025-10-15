@@ -9,12 +9,7 @@ import { Cabecalho } from '../../componentes/cabecalho/cabecalho';
 import { Separador } from '../../componentes/separador/separador';
 import { Contato } from '../../componentes/contato/contato';
 import { ContatoService } from '../../servicos/contato-service';
-
-export interface Contatos {
-  id: number;
-  nome: string;
-  telefone: string;
-}
+import { InterfaceContato } from '../../interfaces/interface-contato';
 
 // import agenda from '../../agenda.json';
 
@@ -34,14 +29,14 @@ export interface Contatos {
 })
 export class ListaContatos implements OnInit {
   alfabeto: string = 'abcdefghijklmnopqrstuvwxyz';
-  contatos: Contatos[] = [];
+  contatos: InterfaceContato[] = [];
 
   filtroPorTexto: string = '';
 
   constructor(private contatoService: ContatoService) {}
 
   ngOnInit() {
-    this.contatos = this.contatoService.obterContatos();
+    this.contatos = this.contatoService.getContatos();
   }
 
   // Remove os acentos de uma string
@@ -49,7 +44,7 @@ export class ListaContatos implements OnInit {
     return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
 
-  filtrarContatosPorTexto(): Contatos[] {
+  filtrarContatosPorTexto(): InterfaceContato[] {
     if (!this.filtroPorTexto) {
       return this.contatos;
     }
@@ -61,7 +56,7 @@ export class ListaContatos implements OnInit {
     });
   }
 
-  filtrarContatosPorLetraInicial(letra: string): Contatos[] {
+  filtrarContatosPorLetraInicial(letra: string): InterfaceContato[] {
     return this.filtrarContatosPorTexto().filter((contato) => {
       // Compara a letra inicial sem considerar acentuações
       return this.removerAcentos(contato.nome)

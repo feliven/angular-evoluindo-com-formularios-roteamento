@@ -46,10 +46,7 @@
       placeholder="Insira o email do contato..."
       formControlName="email"
     />
-    @if(formularioContato.get("email")?.errors?.["required"] &&
-    formularioContato.get("email")?.touched) {
-    <div class="mensagem-erro">Campo obrigatório!!</div>
-    } @if(formularioContato.get("email")?.errors?.["email"] &&
+    @if(formularioContato.get("email")?.errors?.["email"] &&
     formularioContato.get("email")?.touched) {
     <div class="mensagem-erro">Formato inválido!! Cadê a @??</div>
     }
