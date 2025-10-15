@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 // import { CommonModule } from '@angular/common';
 // import { RouterOutlet } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { Container } from '../../componentes/container/container';
 import { Cabecalho } from '../../componentes/cabecalho/cabecalho';
 import { Separador } from '../../componentes/separador/separador';
@@ -24,6 +25,7 @@ import agenda from '../../agenda.json';
     Contato,
     FormsModule,
     ReactiveFormsModule,
+    RouterLink,
   ],
   templateUrl: './lista-contatos.html',
   styleUrl: './lista-contatos.css',

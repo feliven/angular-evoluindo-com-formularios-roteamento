@@ -8,10 +8,17 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-formulario-contato',
-  imports: [CommonModule, Container, Separador, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    Container,
+    Separador,
+    ReactiveFormsModule,
+    RouterLink,
+  ],
   templateUrl: './formulario-contato.html',
   styleUrl: './formulario-contato.css',
 })
