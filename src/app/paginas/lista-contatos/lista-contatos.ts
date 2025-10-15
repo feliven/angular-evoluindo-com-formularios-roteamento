@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 // import { CommonModule } from '@angular/common';
 // import { RouterOutlet } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -32,13 +32,15 @@ export interface Contatos {
   templateUrl: './lista-contatos.html',
   styleUrl: './lista-contatos.css',
 })
-export class ListaContatos {
+export class ListaContatos implements OnInit {
   alfabeto: string = 'abcdefghijklmnopqrstuvwxyz';
   contatos: Contatos[] = [];
 
   filtroPorTexto: string = '';
 
-  constructor(private contatoService: ContatoService) {
+  constructor(private contatoService: ContatoService) {}
+
+  ngOnInit() {
     this.contatos = this.contatoService.obterContatos();
   }
 

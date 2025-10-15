@@ -1,7 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Container } from '../../componentes/container/container';
-import { Separador } from '../../componentes/separador/separador';
 import {
   FormControl,
   FormGroup,
@@ -9,6 +7,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { Container } from '../../componentes/container/container';
+import { Separador } from '../../componentes/separador/separador';
 
 @Component({
   selector: 'app-formulario-contato',
@@ -22,10 +22,16 @@ import { RouterLink } from '@angular/router';
   templateUrl: './formulario-contato.html',
   styleUrl: './formulario-contato.css',
 })
-export class FormularioContato {
+export class FormularioContato implements OnInit {
   formularioContato!: FormGroup;
 
-  constructor() {
+  constructor() {}
+
+  ngOnInit() {
+    this.inicializarFormulario();
+  }
+
+  inicializarFormulario() {
     this.formularioContato = new FormGroup({
       nome: new FormControl('', Validators.required),
       telefone: new FormControl('', Validators.required),
