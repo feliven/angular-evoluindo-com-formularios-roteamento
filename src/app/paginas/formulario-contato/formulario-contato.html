@@ -16,6 +16,11 @@
       placeholder="Digite o nome..."
       formControlName="nome"
     />
+
+    @if(formularioContato.get("nome")?.errors &&
+    formularioContato.get("nome")?.touched) {
+    <div class="mensagem-erro">Campo obrigatório!!</div>
+    }
     <label for="telefone">Número</label>
     <input
       type="number"
@@ -23,6 +28,10 @@
       placeholder="Digite o número de telefone..."
       formControlName="telefone"
     />
+    @if(formularioContato.get("telefone")?.errors &&
+    formularioContato.get("telefone")?.touched) {
+    <div class="mensagem-erro">Campo obrigatório!!</div>
+    }
     <label for="email">E-mail</label>
     <input
       type="email"
@@ -30,6 +39,13 @@
       placeholder="Insira o email do contato..."
       formControlName="email"
     />
+    @if(formularioContato.get("email")?.errors?.["required"] &&
+    formularioContato.get("email")?.touched) {
+    <div class="mensagem-erro">Campo obrigatório!!</div>
+    } @if(formularioContato.get("email")?.errors?.["email"] &&
+    formularioContato.get("email")?.touched) {
+    <div class="mensagem-erro">Formato inválido!! Cadê a @??</div>
+    }
 
     <app-separador></app-separador>
     <label for="aniversario">Aniversário</label>
@@ -60,7 +76,13 @@
       <button (mouseover)="cancelar()" class="botao-cancelar" type="button">
         Cancelar
       </button>
-      <button class="botao-salvar" type="submit">Salvar</button>
+      <button
+        [disabled]="formularioContato.invalid"
+        [ngClass]="formularioContato.valid ? 'botao-salvar' : 'botao-desabilitado'"
+        type="submit"
+      >
+        Salvar
+      </button>
     </section>
   </form>
 </app-container>
