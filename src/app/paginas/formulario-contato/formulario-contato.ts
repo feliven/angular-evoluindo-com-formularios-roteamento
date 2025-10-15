@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Container } from '../../componentes/container/container';
 import { Separador } from '../../componentes/separador/separador';
 import { ContatoService } from '../../servicos/contato-service';
@@ -27,7 +27,7 @@ import { InterfaceContato } from '../../interfaces/interface-contato';
 export class FormularioContato implements OnInit {
   formularioContato!: FormGroup;
 
-  constructor(private contatoService: ContatoService) {}
+  constructor(private contatoService: ContatoService, private router: Router) {}
 
   ngOnInit() {
     this.inicializarFormulario();
@@ -49,6 +49,8 @@ export class FormularioContato implements OnInit {
       console.log(this.formularioContato.value);
       const novoContato: InterfaceContato = this.formularioContato.value;
       this.contatoService.setContato(novoContato);
+      this.formularioContato.reset();
+      this.router.navigateByUrl('/lista-contatos');
     } else {
       console.log('FORMULÁRIO INVÀLIDO!!!');
     }
@@ -56,5 +58,6 @@ export class FormularioContato implements OnInit {
 
   cancelar() {
     console.log('CANCELLED!');
+    this.formularioContato.reset();
   }
 }
