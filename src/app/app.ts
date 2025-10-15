@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 // import { CommonModule } from '@angular/common';
-// import { RouterOutlet } from '@angular/router';
-import { FormularioContato } from './paginas/formulario-contato/formulario-contato';
-import { ListaContatos } from './paginas/lista-contatos/lista-contatos';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [FormularioContato, ListaContatos],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
