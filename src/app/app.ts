@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
-import { ContainerComponent } from './componentes/container/container.component';
-import { CabecalhoComponent } from './componentes/cabecalho/cabecalho.component';
-import { SeparadorComponent } from './componentes/separador/separador.component';
-import { ContatoComponent } from './componentes/contato/contato.component';
-import { FormsModule } from '@angular/forms';
+// import { CommonModule } from '@angular/common';
+// import { RouterOutlet } from '@angular/router';
+import { Container } from './componentes/container/container';
+import { Cabecalho } from './componentes/cabecalho/cabecalho';
+import { Separador } from './componentes/separador/separador';
+import { Contato } from './componentes/contato/contato';
 import { FormularioContato } from './paginas/formulario-contato/formulario-contato';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-interface Contato {
+interface Contatos {
   id: number;
   nome: string;
   telefone: string;
@@ -19,21 +19,20 @@ import agenda from './agenda.json';
 @Component({
   selector: 'app-root',
   imports: [
-    CommonModule,
-    RouterOutlet,
-    ContainerComponent,
-    CabecalhoComponent,
-    SeparadorComponent,
-    ContatoComponent,
+    Container,
+    Cabecalho,
+    Separador,
+    Contato,
     FormsModule,
+    ReactiveFormsModule,
     FormularioContato,
   ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  templateUrl: './app.html',
+  styleUrl: './app.css',
 })
-export class AppComponent {
+export class App {
   alfabeto: string = 'abcdefghijklmnopqrstuvwxyz';
-  contatos: Contato[] = agenda;
+  contatos: Contatos[] = agenda;
 
   filtroPorTexto: string = '';
 
@@ -42,7 +41,7 @@ export class AppComponent {
     return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
 
-  filtrarContatosPorTexto(): Contato[] {
+  filtrarContatosPorTexto(): Contatos[] {
     if (!this.filtroPorTexto) {
       return this.contatos;
     }
@@ -54,7 +53,7 @@ export class AppComponent {
     });
   }
 
-  filtrarContatosPorLetraInicial(letra: string): Contato[] {
+  filtrarContatosPorLetraInicial(letra: string): Contatos[] {
     return this.filtrarContatosPorTexto().filter((contato) => {
       // Compara a letra inicial sem considerar acentuações
       return this.removerAcentos(contato.nome)

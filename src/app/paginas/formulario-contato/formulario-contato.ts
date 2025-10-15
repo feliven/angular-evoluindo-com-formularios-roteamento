@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { ContainerComponent } from '../../componentes/container/container.component';
-import { SeparadorComponent } from '../../componentes/separador/separador.component';
+import { Container } from '../../componentes/container/container';
+import { Separador } from '../../componentes/separador/separador';
 
 @Component({
   selector: 'app-formulario-contato',
-  imports: [ContainerComponent, SeparadorComponent],
+  imports: [Container, Separador],
   templateUrl: './formulario-contato.html',
   styleUrl: './formulario-contato.css',
 })

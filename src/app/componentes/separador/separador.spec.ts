@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormularioContato } from './formulario-contato';
+import { Separador } from './separador';
 
-describe('FormularioContato', () => {
-  let component: FormularioContato;
-  let fixture: ComponentFixture<FormularioContato>;
+describe('Separador', () => {
+  let component: Separador;
+  let fixture: ComponentFixture<Separador>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormularioContato],
+      imports: [Separador],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(FormularioContato);
+    fixture = TestBed.createComponent(Separador);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
