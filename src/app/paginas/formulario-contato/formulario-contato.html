@@ -8,6 +8,8 @@
       <h1>Adicionar contato</h1>
     </section>
   </header>
+  <app-separador></app-separador>
+
   <form [formGroup]="formularioContato" (ngSubmit)="salvarContato()">
     <label for="nome">Nome</label>
     <input
