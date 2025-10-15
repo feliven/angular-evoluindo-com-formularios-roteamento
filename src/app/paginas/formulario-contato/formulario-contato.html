@@ -8,7 +8,7 @@
       <h1>Adicionar contato</h1>
     </section>
   </header>
-  <form [formGroup]="formularioContato">
+  <form [formGroup]="formularioContato" (ngSubmit)="salvarContato()">
     <label for="nome">Nome</label>
     <input
       type="text"
@@ -56,9 +56,11 @@
       placeholder="Ex.: Instrutora da academia, amiga da Julia"
       formControlName="observacoes"
     ></textarea>
+    <section class="botoes">
+      <button (mouseover)="cancelar()" class="botao-cancelar" type="button">
+        Cancelar
+      </button>
+      <button class="botao-salvar" type="submit">Salvar</button>
+    </section>
   </form>
-  <section class="botoes">
-    <button class="botao-cancelar" type="button">Cancelar</button>
-    <button class="botao-salvar" type="submit">Salvar</button>
-  </section>
 </app-container>
